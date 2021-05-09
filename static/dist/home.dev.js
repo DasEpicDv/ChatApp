@@ -6,6 +6,7 @@ var lastKnownScroll = {};
 var canScrollMore = {};
 var ringTone = new Audio('./static/Sounds/ringtone.mp3');
 var previouslyLoadedMessages = {};
+var myProfile = {};
 
 var getProfileData = function getProfileData() {
   var rawResponse, data;
@@ -102,42 +103,35 @@ var enterMessageFunc = function enterMessageFunc(e) {
         case 0:
           messageInputForm = document.querySelector('#message-input-form');
 
-          if (!(messageInputForm.value !== "")) {
-            _context3.next = 14;
-            break;
+          if (messageInputForm.value !== "") {
+            id = document.querySelector('#removable').getAttribute('data-current-user');
+            sendUserToTop(id);
+            data = myProfile;
+            _date = new Date();
+            hour = 0;
+
+            if (_date.getHours() > 11 && _date.getMinutes() > 59) {
+              hour = _date.getHours() + ":" + _date.getMinutes() + " am";
+            } else {
+              hour = _date.getHours() - 12 + ":" + _date.getMinutes() + " pm";
+            }
+
+            _message = messageInputForm.value;
+            addMessageToChatBox({
+              'message': _message,
+              user: 0,
+              date: "".concat(hour)
+            }, {
+              'picture': data["name"].charAt(0)
+            });
+            messageInputForm.value = "";
+            socket.emit('sendMessage', {
+              'id': id,
+              'message': _message
+            });
           }
 
-          id = document.querySelector('#removable').getAttribute('data-current-user');
-          sendUserToTop(id);
-          _context3.next = 6;
-          return regeneratorRuntime.awrap(getProfileData());
-
-        case 6:
-          data = _context3.sent;
-          _date = new Date();
-          hour = 0;
-
-          if (_date.getHours() > 11 && _date.getMinutes() > 59) {
-            hour = _date.getHours() + ":" + _date.getMinutes() + " am";
-          } else {
-            hour = _date.getHours() - 12 + ":" + _date.getMinutes() + " pm";
-          }
-
-          _message = messageInputForm.value;
-          addMessageToChatBox({
-            'message': _message,
-            user: 0,
-            date: "".concat(hour)
-          }, {
-            'picture': data["name"].charAt(0)
-          });
-          messageInputForm.value = "";
-          socket.emit('sendMessage', {
-            'id': id,
-            'message': _message
-          });
-
-        case 14:
+        case 2:
         case "end":
           return _context3.stop();
       }
@@ -413,6 +407,13 @@ var loadContents = function loadContents() {
         case 2:
           data = _context16.sent;
           socket.emit('user-connected', data);
+          myProfile = {
+            'id': data["id"],
+            'name': data["name"],
+            'email': data["email"],
+            'description': data["description"],
+            'created': data["created"]
+          };
           document.querySelector("#add-name").innerText = data["name"];
           logos = document.querySelectorAll('#middle > .logo');
           logos.forEach(function (element) {
@@ -434,62 +435,47 @@ var loadContents = function loadContents() {
                 element.style.display = 'block';
               });
               e.currentTarget.classList.add('logo-active');
+
+              if (e.currentTarget.getAttribute("data-for") === "for-settings" || e.currentTarget.getAttribute("data-for") === "for-profile") {
+                document.querySelector(".".concat(e.currentTarget.getAttribute("data-for"), " #add-name")).innerText = myProfile["name"];
+                document.querySelector(".".concat(e.currentTarget.getAttribute("data-for"), " #add-description")).innerText = myProfile["description"];
+              }
             });
           });
           document.querySelectorAll('.dropdown-card').forEach(function (element) {
             element.addEventListener('click', function _callee(e) {
-              var content, _ref, email, name, created, obj, key;
-
+              var content, obj;
               return regeneratorRuntime.async(function _callee$(_context10) {
                 while (1) {
                   switch (_context10.prev = _context10.next) {
                     case 0:
-                      if (!(e.target.nodeName === "I")) {
-                        _context10.next = 16;
-                        break;
+                      if (e.target.nodeName === "I") {
+                        content = e.currentTarget.nextElementSibling;
+
+                        if (e.target.classList.contains("dropdown-card-arrow-right")) {
+                          e.target.classList.remove("dropdown-card-arrow-right");
+                          e.target.classList.add('dropdown-card-arrow-up');
+                        } else {
+                          e.target.classList.remove("dropdown-card-arrow-up");
+                          e.target.classList.add('dropdown-card-arrow-right');
+                        }
+
+                        if (content.style.maxHeight) {
+                          content.style.maxHeight = null;
+                        } else {
+                          obj = [myProfile['name'], myProfile['email'], myProfile['created']];
+                          $i = 0;
+                          e.target.parentNode.nextElementSibling.firstElementChild.childNodes.forEach(function (element) {
+                            if (element.nodeName === "DIV") {
+                              element.lastElementChild.innerText = obj[$i];
+                              $i++;
+                            }
+                          });
+                          content.style.maxHeight = content.scrollHeight + "px";
+                        }
                       }
 
-                      content = e.currentTarget.nextElementSibling;
-
-                      if (e.target.classList.contains("dropdown-card-arrow-right")) {
-                        e.target.classList.remove("dropdown-card-arrow-right");
-                        e.target.classList.add('dropdown-card-arrow-up');
-                      } else {
-                        e.target.classList.remove("dropdown-card-arrow-up");
-                        e.target.classList.add('dropdown-card-arrow-right');
-                      }
-
-                      if (!content.style.maxHeight) {
-                        _context10.next = 7;
-                        break;
-                      }
-
-                      content.style.maxHeight = null;
-                      _context10.next = 16;
-                      break;
-
-                    case 7:
-                      _context10.next = 9;
-                      return regeneratorRuntime.awrap(getProfileData());
-
-                    case 9:
-                      _ref = _context10.sent;
-                      email = _ref.email;
-                      name = _ref.name;
-                      created = _ref.created;
-                      obj = {
-                        email: email,
-                        name: name,
-                        created: created
-                      };
-
-                      for (key in obj) {
-                        document.querySelector(".my-dropdown-profile h5[data-user-".concat(key, "]")).innerText = obj[key];
-                      }
-
-                      content.style.maxHeight = content.scrollHeight + "px";
-
-                    case 16:
+                    case 1:
                     case "end":
                       return _context10.stop();
                   }
@@ -517,36 +503,36 @@ var loadContents = function loadContents() {
               e.currentTarget.style.transform = "translateX(100%)";
             }
           });
-          _context16.next = 12;
+          _context16.next = 13;
           return regeneratorRuntime.awrap(getUserList());
 
-        case 12:
+        case 13:
           data = _context16.sent;
           _context16.t0 = regeneratorRuntime.keys(data);
 
-        case 14:
+        case 15:
           if ((_context16.t1 = _context16.t0()).done) {
-            _context16.next = 22;
+            _context16.next = 23;
             break;
           }
 
           key = _context16.t1.value;
-          _context16.next = 18;
+          _context16.next = 19;
           return regeneratorRuntime.awrap(getUserProfileData({
             '_id': key
           }));
 
-        case 18:
+        case 19:
           _gotData = _context16.sent;
 
           if (data[key]["shouldShow"]) {
             addToRecentList(key, _gotData[0]["name"], _gotData[0]['online'], _gotData[0]['lastSeen']);
           }
 
-          _context16.next = 14;
+          _context16.next = 15;
           break;
 
-        case 22:
+        case 23:
           document.querySelector("#recent-list").addEventListener('click', function _callee3(e) {
             var toUserId, toName, active, myinfo, theirInfo, online, myUserData, hisUserData, messages, rest;
             return regeneratorRuntime.async(function _callee3$(_context12) {
@@ -886,7 +872,7 @@ var loadContents = function loadContents() {
           });
           return _context16.abrupt("return");
 
-        case 30:
+        case 31:
         case "end":
           return _context16.stop();
       }

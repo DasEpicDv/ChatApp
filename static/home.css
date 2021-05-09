@@ -46,7 +46,6 @@ body {
 
 .dropdown-body  .dropdown-body-label ~ h5{
   font-size: 14px;
-  font-weight: 600;
 }
 
 ::-webkit-scrollbar {
@@ -365,8 +364,9 @@ ul {
 .chat-box {
   flex: 1;
   overflow-y: scroll;
-  min-height: calc(100vh - 165px);
-  max-height: calc(100vh - 165px);
+  min-height: calc(100vh - 180px);
+  max-height: calc(100vh - 180px);
+  padding: 24px;
 }
 
 .chat-enter {
@@ -408,10 +408,6 @@ ul {
   margin: 0 0 0 5px;
   display: flex;
   flex-direction: row;
-}
-
-.chat-box {
-  padding: 24px;
 }
 
 .message-profile-picture {
@@ -652,6 +648,7 @@ ul {
 
 .profile-info {
   padding: 24px;
+  overflow-y: scroll;
 }
 
 .dropdown-card {
@@ -693,6 +690,10 @@ ul {
   border-top: none;
 }
 
+#end ul {
+  margin-bottom: 0px;
+}
+
 @media only screen and (max-width: 900px) {
   #rest {
     position: fixed;
@@ -712,6 +713,7 @@ ul {
     flex: 1;
     min-width: auto;
     max-width: unset;
+    min-height: 89vh;
   }
 
   .message-box {
@@ -721,6 +723,50 @@ ul {
   #openedUser .content {
     max-width: calc(100vw - 100px)!important;
     min-width: calc(100vw - 100px)!important;
+  }
+
+  #container {
+    flex-direction: column-reverse;
+  }
+
+  #optionPanel {
+    min-height: 75px;
+    max-height: 75px;
+    min-width: 100vw;
+    max-width: 100vw;
+    flex-direction: row!important;
+  }
+
+  #optionPanel .logo:nth-child(3){
+    margin: auto;
+  }
+
+  .logo {
+    min-height: 0;
+    margin: 0px 7px;
+  }
+
+  #recent {
+    max-height: 402px;
+    min-height: 402px;
+  }
+
+  .chat-box {
+    min-height: calc(100vh - 148px);
+    max-height: calc(100vh - 148px);
+  }
+
+  .profile-info {
+    max-height: 19.6rem;
+    min-height: 19.6rem;
+  }
+
+  #end, #end ul {
+    display: flex
+  }
+
+  #optionPanel > .logo, #end ul .logo:first-child{
+    display: none;
   }
 }
 

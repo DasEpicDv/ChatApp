@@ -6,6 +6,7 @@ let canScrollMore = {};
 let ringTone = new Audio('./static/Sounds/ringtone.mp3');
 
 let previouslyLoadedMessages = {};
+let myProfile = {};
 
 const getProfileData = async () => {
     const rawResponse = await fetch('/requests/profile', {
@@ -55,7 +56,7 @@ const enterMessageFunc = async (e) => {
         const id = document.querySelector('#removable').getAttribute('data-current-user');
         sendUserToTop(id);
 
-        const data = await getProfileData();
+        const data = myProfile;
         const date = new Date();
         let hour = 0;
         if (date.getHours() > 11 && date.getMinutes() > 59) {
@@ -231,7 +232,15 @@ const addMessageToChatBox = async (textMessage, userData, before = false) => {
 const loadContents = async () => {
     let data = await getProfileData();
     socket.emit('user-connected', data);
+    myProfile = {
+        'id': data["id"],
+        'name': data["name"],
+        'email': data["email"],
+        'description': data["description"],
+        'created': data["created"]
+    };
     document.querySelector("#add-name").innerText = data["name"];
+
 
     const logos = document.querySelectorAll('#middle > .logo');
     logos.forEach(element => {
@@ -250,7 +259,11 @@ const loadContents = async () => {
             classes.forEach(element => {
                 element.style.display = 'block';
             });
-            e.currentTarget.classList.add('logo-active')
+            e.currentTarget.classList.add('logo-active');
+            if (e.currentTarget.getAttribute("data-for") === "for-settings" || e.currentTarget.getAttribute("data-for") === "for-profile"){
+                document.querySelector(`.${e.currentTarget.getAttribute("data-for")} #add-name`).innerText = myProfile["name"];
+                document.querySelector(`.${e.currentTarget.getAttribute("data-for")} #add-description`).innerText = myProfile["description"];
+            }
         });
     });
 
@@ -268,11 +281,14 @@ const loadContents = async () => {
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                 } else {
-                    let { email, name, created } = await getProfileData();
-                    let obj = { email: email, name: name, created: created };
-                    for (const key in obj) {
-                        document.querySelector(`.my-dropdown-profile h5[data-user-${key}]`).innerText = obj[key];
-                    }
+                    let obj = [myProfile['name'], myProfile['email'], myProfile['created']];
+                    $i = 0;
+                    e.target.parentNode.nextElementSibling.firstElementChild.childNodes.forEach(element => {
+                        if (element.nodeName === "DIV"){
+                            element.lastElementChild.innerText = obj[$i];
+                            $i++;
+                        }
+                    });
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
             }
@@ -393,16 +409,16 @@ const loadContents = async () => {
             const myUserData = { 'name': myinfo["name"], 'picture': myinfo["name"].charAt(0) };
             const hisUserData = { 'name': theirInfo["name"], 'picture': theirInfo["name"].charAt(0) }
             let messages = {};
-            if (previouslyLoadedMessages[toUserId]){
+            if (previouslyLoadedMessages[toUserId]) {
                 messages = previouslyLoadedMessages[toUserId];
             } else {
                 gotData = await getMessagesOfUser(toUserId);
                 lastKnownScroll[toUserId] = 11;
-                if (gotData["end"]) {canScrollMore[toUserId] = false} else {canScrollMore[toUserId] = true}
+                if (gotData["end"]) { canScrollMore[toUserId] = false } else { canScrollMore[toUserId] = true }
                 messages = gotData["messages"];
                 previouslyLoadedMessages[toUserId] = messages;
             }
-            
+
             messages.forEach(element => {
                 let data = myUserData;
                 if (element["user"] === 1) {
@@ -420,7 +436,7 @@ const loadContents = async () => {
                                 canScrollMore[document.querySelector('#removable').getAttribute('data-current-user')] = false;
                             }
                             const myinfo = await getProfileData();
-                            const theirInfo = (await getUserProfileData({'_id': document.querySelector('#removable').getAttribute('data-current-user')}))[0];
+                            const theirInfo = (await getUserProfileData({ '_id': document.querySelector('#removable').getAttribute('data-current-user') }))[0];
                             const myUserData = { 'name': myinfo["name"], 'picture': myinfo["name"].charAt(0) };
                             const hisUserData = { 'name': theirInfo["name"], 'picture': theirInfo["name"].charAt(0) }
                             previouslyLoadedMessages[document.querySelector('#removable').getAttribute('data-current-user')] = messages["messages"].concat(previouslyLoadedMessages[document.querySelector('#removable').getAttribute('data-current-user')]);
