@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- <script defer src="socket.io/socket.io.js"></script> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script defer src="socket.io/socket.io.js"></script>
+<script defer src="../static/home.js"></script>  
+<link rel="stylesheet" href="../static/home.css">
+<title>Home</title>
+</head>
+<body>
+<div id="loading-screen">
+<div style="flex: 1;">
+<p>Loading..</p>
+<div class="loader mx-auto"></div>
+</div>
+</div>
+<div id="error"><div class="mx-auto" style="flex: 1;"><p>Please relod page there's an error</p></div></div>
+<div id="openedUser">
+<div class="content  mx-auto my-auto">
+</div>
+</div>
+<div id="container">
+<div id="optionPanel">
+<div class="logo">
+<img class="logo-sm" src="../static/Images/logo.de6401ef.svg" alt height="30">
+</div>
+<div class="mt-auto mb-auto">
+<ul id="middle" class="nav">
+<li class="logo" title="Profile" data-for="for-profile">
+<span class="show">Profile</span>
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+<path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+</svg>
+</li>
+<li class="logo" title="Chat" data-for="for-chatting">
+<span class="show">Chat</span>
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+<path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>                    
+</svg>
+</li>
+<li class="logo" title="Groups" data-for="for-groups">
+<span class="show">Groups</span>
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+</svg>
+</li>
+<li class="logo" title="Contacts" data-for="for-contacts">
+<span class="show">Contacts</span>
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+</svg>
+</li>
+<li class="logo" title="Settings" data-for="for-settings">
+<div class="show"><p>Settings</p></div>
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+</svg>
+</li>
+</ul>
+</div>
+<div id="end">
+<ul>
+<li class="logo">
+<svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+<path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+</svg>
+</li>
+<li class="logo">
+<img class="logo-sm" src="../static/Images/logo.de6401ef.svg" alt height="36">
+</li>
+</ul>
+</div>
+</div>
+<div id="optionDisplayer">
+<div class="for-chatting hide">
+<div class="search px-4 pt-4 pb-4">
+<h4 class="mb-4" style="color: #e1e9f1;">Chats</h4>
+<div class="search-box">
+<form class="row g-3">
+<div class="input-group">
+<div class="input-group-text">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
+</div>
+<input type="text" class="form-control" placeholder="Search for User">
+<div class="search-box-result">
+<ul class="users mb-0">
+</ul>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="recent" class="pl-2 pr-2">
+<h5 class="mb-3 px-3 font-size-16" style="color: #e1e9f1;">Recent</h5>
+<ul id="recent-list">
+</ul>
+</div>
+</div>
+<div class="for-profile hide">
+<div class="px-4 pt-4">
+<h4 class="mb-0" style="color: #e1e9f1;font-size: 23px;">My Profile</h4>
+</div>
+<div id="profile" class="p-4 border-bottom" style="text-align: center;">
+<div class="mb-4" style="display: inline-block;">
+<img src="https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg" class="profile-picture img-thumbnail">
+</div>
+<h5 class="font-size-16 mb-1" id="add-name"></h5>
+<p class="text-muted mb-1">
+<span style="margin: 0 6px 0 0;display: inline-block;" class="round user-status-online"></span>Active
+</p>
+</div>
+<div class="profile-info">
+<div class="text-muted">
+<p class="mb-4" id="add-description"></p>
+</div>
+<div class="dropdown-card">
+<p>About</p>
+<i class="dropdown-card-arrow dropdown-card-arrow-right pointer"></i>
+</div>
+<div class="dropdown-content">
+<div class="dropdown-body my-dropdown-profile">
+<div>
+<p class="text-muted mb-1 dropdown-body-label">Name</p>
+<h5 data-user-name></h5>
+</div>
+<div>
+<p class="text-muted mb-1 dropdown-body-label">Email</p>
+<h5 data-user-email></h5>
+</div>
+<div>
+<p class="text-muted mb-1 dropdown-body-label">Date Created</p>
+<h5 data-user-created></h5>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="rest">
+<div class="for-chatting hide">
+<div id="removable" data-current-user="">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

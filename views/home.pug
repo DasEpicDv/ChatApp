@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <script defer src="socket.io/socket.io.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script defer src="socket.io/socket.io.js"></script>
+    <script defer src="../static/home.js"></script>  
+    <link rel="stylesheet" href="../static/home.css">
+    <title>Home</title>
+</head>
+<body>
+    <div id="loading-screen">
+        <div style="flex: 1;">
+            <p>Loading..</p>
+            <div class="loader mx-auto"></div>
+        </div>
+    </div>
+    <div id="error"><div class="mx-auto" style="flex: 1;"><p>Please relod page there's an error</p></div></div>
+    <div id="openedUser">
+        <div class="content  mx-auto my-auto">
+            
+        </div>
+    </div>
+    <div id="container">
+        <div id="optionPanel">
+            <div class="logo">
+                <img class="logo-sm" src="../static/Images/logo.de6401ef.svg" alt height="30">
+            </div>
+            <div class="mt-auto mb-auto">
+                <ul id="middle" class="nav">
+                    <li class="logo" title="Profile" data-for="for-profile">
+                        <span class="show">Profile</span>
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                        </svg>
+                    </li>
+                    <li class="logo" title="Chat" data-for="for-chatting">
+                        <span class="show">Chat</span>
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>                    
+                        </svg>
+                    </li>
+                    <li class="logo" title="Groups" data-for="for-groups">
+                        <span class="show">Groups</span>
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                        </svg>
+                    </li>
+                    <li class="logo" title="Contacts" data-for="for-contacts">
+                        <span class="show">Contacts</span>
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                        </svg>
+                    </li>
+                    <li class="logo" title="Settings" data-for="for-settings">
+                        <div class="show"><p>Settings</p></div>
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                        </svg>
+                    </li>
+                </ul>
+            </div>
+            <div id="end">
+                <ul>
+                    <li class="logo">
+                        <svg class="logo-sm" xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                        </svg>
+                    </li>
+                    <li class="logo">
+                        <img class="logo-sm" src="../static/Images/logo.de6401ef.svg" alt height="36">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="optionDisplayer">
+            <div class="for-chatting hide">
+                <div class="search px-4 pt-4 pb-4">
+                    <h4 class="mb-4" style="color: #e1e9f1;">Chats</h4>
+                    <div class="search-box">
+                        <form class="row g-3">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search for User">
+                                <div class="search-box-result">
+                                    <ul class="users mb-0">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="recent" class="pl-2 pr-2">
+                    <h5 class="mb-3 px-3 font-size-16" style="color: #e1e9f1;">Recent</h5>
+                    <ul id="recent-list">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="for-profile hide">
+                <div class="px-4 pt-4">
+                    <h4 class="mb-0" style="color: #e1e9f1;font-size: 23px;">My Profile</h4>
+                </div>
+                <div id="profile" class="p-4 border-bottom" style="text-align: center;">
+                    <div class="mb-4" style="display: inline-block;">
+                        <img src="https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg" class="profile-picture img-thumbnail">
+                    </div>
+                    <h5 class="font-size-16 mb-1" id="add-name"></h5>
+                    <p class="text-muted mb-1">
+                        <span style="margin: 0 6px 0 0;display: inline-block;" class="round user-status-online"></span>Active
+                    </p>
+                </div>
+                <div class="profile-info">
+                    <div class="text-muted">
+                        <p class="mb-4" id="add-description"></p>
+                    </div>
+                    <div class="dropdown-card">
+                        <p>About</p>
+                        <i class="dropdown-card-arrow dropdown-card-arrow-right pointer"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-body my-dropdown-profile">
+                            <div>
+                                <p class="text-muted mb-1 dropdown-body-label">Name</p>
+                                <h5 data-user-name></h5>
+                            </div>
+                            <div>
+                                <p class="text-muted mb-1 dropdown-body-label">Email</p>
+                                <h5 data-user-email></h5>
+                            </div>
+                            <div>
+                                <p class="text-muted mb-1 dropdown-body-label">Date Created</p>
+                                <h5 data-user-created></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rest">
+            <div class="for-chatting hide">
+                <div id="removable" data-current-user="">
+                
+                </div>
+            </div>
+            //- <div class="chat-enter p-3 p-lg-4 border-top mb-0">
+            //-     <textarea id="message-input-form" placeholder="Type Message" class="form-control form-control-lg bg-light border-light rounded" style="min-height: 20px; padding-left: 12px;"></textarea>
+            //-     <div class="chat-btn-area">
+            //-         <div  id="emoji-btn">
+            //-             <button class="pointer">
+            //-                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+            //-                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            //-                     <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+            //-                 </svg>
+            //-                 <div id="inner" style="cursor: default;">
+            //-                     <div id="search">
+            //-                         <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Search for Emoji">
+            //-                     </div>
+            //-                     <div id="emoji-list">
+            //-                         <div class="emoji-category">
+            //-                             <h5>PEOPLE</h5>
+            //-                             <div class="emojis">
+            //-                                 <span title="smile">😄</span><span data-v-1cd1a04e="" title="smiley">😃</span><span data-v-1cd1a04e="" title="grinning">😀</span><span data-v-1cd1a04e="" title="blush">😊</span><span data-v-1cd1a04e="" title="wink">😉</span><span data-v-1cd1a04e="" title="heart_eyes">😍</span><span data-v-1cd1a04e="" title="kissing_heart">😘</span><span data-v-1cd1a04e="" title="kissing_closed_eyes">😚</span><span data-v-1cd1a04e="" title="kissing">😗</span><span data-v-1cd1a04e="" title="kissing_smiling_eyes">😙</span><span data-v-1cd1a04e="" title="stuck_out_tongue_winking_eye">😜</span><span data-v-1cd1a04e="" title="stuck_out_tongue_closed_eyes">😝</span><span data-v-1cd1a04e="" title="stuck_out_tongue">😛</span><span data-v-1cd1a04e="" title="flushed">😳</span><span data-v-1cd1a04e="" title="grin">😁</span><span data-v-1cd1a04e="" title="pensive">😔</span><span data-v-1cd1a04e="" title="relieved">😌</span><span data-v-1cd1a04e="" title="unamused">😒</span><span data-v-1cd1a04e="" title="disappointed">😞</span><span data-v-1cd1a04e="" title="persevere">😣</span><span data-v-1cd1a04e="" title="cry">😢</span><span data-v-1cd1a04e="" title="joy">😂</span><span data-v-1cd1a04e="" title="sob">😭</span><span data-v-1cd1a04e="" title="sleepy">😪</span><span data-v-1cd1a04e="" title="disappointed_relieved">😥</span><span data-v-1cd1a04e="" title="cold_sweat">😰</span><span data-v-1cd1a04e="" title="sweat_smile">😅</span><span data-v-1cd1a04e="" title="sweat">😓</span><span data-v-1cd1a04e="" title="weary">😩</span><span data-v-1cd1a04e="" title="tired_face">😫</span><span data-v-1cd1a04e="" title="fearful">😨</span><span data-v-1cd1a04e="" title="scream">😱</span><span data-v-1cd1a04e="" title="angry">😠</span><span data-v-1cd1a04e="" title="rage">😡</span><span data-v-1cd1a04e="" title="triumph">😤</span><span data-v-1cd1a04e="" title="confounded">😖</span><span data-v-1cd1a04e="" title="laughing">😆</span><span data-v-1cd1a04e="" title="yum">😋</span><span data-v-1cd1a04e="" title="mask">😷</span><span data-v-1cd1a04e="" title="sunglasses">😎</span><span data-v-1cd1a04e="" title="sleeping">😴</span><span data-v-1cd1a04e="" title="dizzy_face">😵</span><span data-v-1cd1a04e="" title="astonished">😲</span><span data-v-1cd1a04e="" title="worried">😟</span><span data-v-1cd1a04e="" title="frowning">😦</span><span data-v-1cd1a04e="" title="anguished">😧</span><span data-v-1cd1a04e="" title="imp">👿</span><span data-v-1cd1a04e="" title="open_mouth">😮</span><span data-v-1cd1a04e="" title="grimacing">😬</span><span data-v-1cd1a04e="" title="neutral_face">😐</span><span data-v-1cd1a04e="" title="confused">😕</span><span data-v-1cd1a04e="" title="hushed">😯</span><span data-v-1cd1a04e="" title="smirk">😏</span><span data-v-1cd1a04e="" title="expressionless">😑</span><span data-v-1cd1a04e="" title="man_with_gua_pi_mao">👲</span><span data-v-1cd1a04e="" title="man_with_turban">👳</span><span data-v-1cd1a04e="" title="cop">👮</span><span data-v-1cd1a04e="" title="construction_worker">👷</span><span data-v-1cd1a04e="" title="guardsman">💂</span><span data-v-1cd1a04e="" title="baby">👶</span><span data-v-1cd1a04e="" title="boy">👦</span><span data-v-1cd1a04e="" title="girl">👧</span><span data-v-1cd1a04e="" title="man">👨</span><span data-v-1cd1a04e="" title="woman">👩</span><span data-v-1cd1a04e="" title="older_man">👴</span><span data-v-1cd1a04e="" title="older_woman">👵</span><span data-v-1cd1a04e="" title="person_with_blond_hair">👱</span><span data-v-1cd1a04e="" title="angel">👼</span><span data-v-1cd1a04e="" title="princess">👸</span><span data-v-1cd1a04e="" title="smiley_cat">😺</span><span data-v-1cd1a04e="" title="smile_cat">😸</span><span data-v-1cd1a04e="" title="heart_eyes_cat">😻</span><span data-v-1cd1a04e="" title="kissing_cat">😽</span><span data-v-1cd1a04e="" title="smirk_cat">😼</span><span data-v-1cd1a04e="" title="scream_cat">🙀</span><span data-v-1cd1a04e="" title="crying_cat_face">😿</span><span data-v-1cd1a04e="" title="joy_cat">😹</span><span data-v-1cd1a04e="" title="pouting_cat">😾</span><span data-v-1cd1a04e="" title="japanese_ogre">👹</span><span data-v-1cd1a04e="" title="japanese_goblin">👺</span><span data-v-1cd1a04e="" title="see_no_evil">🙈</span><span data-v-1cd1a04e="" title="hear_no_evil">🙉</span><span data-v-1cd1a04e="" title="speak_no_evil">🙊</span><span data-v-1cd1a04e="" title="skull">💀</span><span data-v-1cd1a04e="" title="alien">👽</span><span data-v-1cd1a04e="" title="hankey">💩</span><span data-v-1cd1a04e="" title="fire">🔥</span><span data-v-1cd1a04e="" title="sparkles">✨</span><span data-v-1cd1a04e="" title="star2">🌟</span><span data-v-1cd1a04e="" title="dizzy">💫</span><span data-v-1cd1a04e="" title="boom">💥</span><span data-v-1cd1a04e="" title="anger">💢</span><span data-v-1cd1a04e="" title="sweat_drops">💦</span><span data-v-1cd1a04e="" title="droplet">💧</span><span data-v-1cd1a04e="" title="zzz">💤</span><span data-v-1cd1a04e="" title="dash">💨</span><span data-v-1cd1a04e="" title="ear">👂</span><span data-v-1cd1a04e="" title="eyes">👀</span><span data-v-1cd1a04e="" title="nose">👃</span><span data-v-1cd1a04e="" title="tongue">👅</span><span data-v-1cd1a04e="" title="lips">👄</span><span data-v-1cd1a04e="" title="thumbs_up">👍</span><span data-v-1cd1a04e="" title="-1">👎</span><span data-v-1cd1a04e="" title="ok_hand">👌</span><span data-v-1cd1a04e="" title="facepunch">👊</span><span data-v-1cd1a04e="" title="fist">✊</span><span data-v-1cd1a04e="" title="wave">👋</span><span data-v-1cd1a04e="" title="hand">✋</span><span data-v-1cd1a04e="" title="open_hands">👐</span><span data-v-1cd1a04e="" title="point_up_2">👆</span><span data-v-1cd1a04e="" title="point_down">👇</span><span data-v-1cd1a04e="" title="point_right">👉</span><span data-v-1cd1a04e="" title="point_left">👈</span><span data-v-1cd1a04e="" title="raised_hands">🙌</span><span data-v-1cd1a04e="" title="pray">🙏</span><span data-v-1cd1a04e="" title="clap">👏</span><span data-v-1cd1a04e="" title="muscle">💪</span><span data-v-1cd1a04e="" title="walking">🚶</span><span data-v-1cd1a04e="" title="runner">🏃</span><span data-v-1cd1a04e="" title="dancer">💃</span><span data-v-1cd1a04e="" title="couple">👫</span><span data-v-1cd1a04e="" title="family">👪</span><span data-v-1cd1a04e="" title="couplekiss">💏</span><span data-v-1cd1a04e="" title="couple_with_heart">💑</span><span data-v-1cd1a04e="" title="dancers">👯</span><span data-v-1cd1a04e="" title="ok_woman">🙆</span><span data-v-1cd1a04e="" title="no_good">🙅</span><span data-v-1cd1a04e="" title="information_desk_person">💁</span><span data-v-1cd1a04e="" title="raising_hand">🙋</span><span data-v-1cd1a04e="" title="massage">💆</span><span data-v-1cd1a04e="" title="haircut">💇</span><span data-v-1cd1a04e="" title="nail_care">💅</span><span data-v-1cd1a04e="" title="bride_with_veil">👰</span><span data-v-1cd1a04e="" title="person_with_pouting_face">🙎</span><span data-v-1cd1a04e="" title="person_frowning">🙍</span><span data-v-1cd1a04e="" title="bow">🙇</span><span data-v-1cd1a04e="" title="tophat">🎩</span><span data-v-1cd1a04e="" title="crown">👑</span><span data-v-1cd1a04e="" title="womans_hat">👒</span><span data-v-1cd1a04e="" title="athletic_shoe">👟</span><span data-v-1cd1a04e="" title="mans_shoe">👞</span><span data-v-1cd1a04e="" title="sandal">👡</span><span data-v-1cd1a04e="" title="high_heel">👠</span><span data-v-1cd1a04e="" title="boot">👢</span><span data-v-1cd1a04e="" title="shirt">👕</span><span data-v-1cd1a04e="" title="necktie">👔</span><span data-v-1cd1a04e="" title="womans_clothes">👚</span><span data-v-1cd1a04e="" title="dress">👗</span><span data-v-1cd1a04e="" title="running_shirt_with_sash">🎽</span><span data-v-1cd1a04e="" title="jeans">👖</span><span data-v-1cd1a04e="" title="kimono">👘</span><span data-v-1cd1a04e="" title="bikini">👙</span><span data-v-1cd1a04e="" title="briefcase">💼</span><span data-v-1cd1a04e="" title="handbag">👜</span><span data-v-1cd1a04e="" title="pouch">👝</span><span data-v-1cd1a04e="" title="purse">👛</span><span data-v-1cd1a04e="" title="eyeglasses">👓</span><span data-v-1cd1a04e="" title="ribbon">🎀</span><span data-v-1cd1a04e="" title="closed_umbrella">🌂</span><span data-v-1cd1a04e="" title="lipstick">💄</span><span data-v-1cd1a04e="" title="yellow_heart">💛</span><span data-v-1cd1a04e="" title="blue_heart">💙</span><span data-v-1cd1a04e="" title="purple_heart">💜</span><span data-v-1cd1a04e="" title="green_heart">💚</span><span data-v-1cd1a04e="" title="broken_heart">💔</span><span data-v-1cd1a04e="" title="heartpulse">💗</span><span data-v-1cd1a04e="" title="heartbeat">💓</span><span data-v-1cd1a04e="" title="two_hearts">💕</span><span data-v-1cd1a04e="" title="sparkling_heart">💖</span><span data-v-1cd1a04e="" title="revolving_hearts">💞</span><span data-v-1cd1a04e="" title="cupid">💘</span><span data-v-1cd1a04e="" title="love_letter">💌</span><span data-v-1cd1a04e="" title="kiss">💋</span><span data-v-1cd1a04e="" title="ring">💍</span><span data-v-1cd1a04e="" title="gem">💎</span><span data-v-1cd1a04e="" title="bust_in_silhouette">👤</span><span data-v-1cd1a04e="" title="speech_balloon">💬</span><span data-v-1cd1a04e="" title="footprints">👣</span>
+            //-                             </div>
+            //-                         </div>
+            //-                     </div>
+            //-                 </div>
+            //-             </button>
+            //-         </div>
+            //-         <button class="pointer" id="enter-btn">
+            //-             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            //-                 <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            //-                 <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            //-             </svg>
+            //-         </button>
+            //-     </div>
+            //- </div> 
+        </div>
+    </div>
+
+    
+  
+</body>
+</html>
